@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rismi Niras — Web Designer & Developer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #e8f4fd;
+    --bg2: #d0e9f8;
+    --card: #ffffff;
+    --card2: #f0f8ff;
+    --accent: #1a7abf;
+    --accent2: #2596e8;
+    --accent-light: #cce7f8;
+    --text: #0d2137;
+    --muted: #5a7a95;
+    --border: #b8d9f0;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 52px; border-bottom: 1px solid var(--border);
+    position: sticky; top: 0;
+    background: rgba(232,244,253,0.97);
+    backdrop-filter: blur(10px); z-index: 100;
+  }
+
+  .logo { display: flex; flex-direction: column; line-height: 1.1; }
+  .logo-name { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: var(--text); }
+  .logo-sub { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--accent); letter-spacing: 3px; text-transform: uppercase; margin-top: 2px; }
+
+  .nav-links { display: flex; gap: 34px; list-style: none; }
+  .nav-links a { text-decoration: none; font-size: 13px; color: var(--muted); transition: color 0.2s; cursor: pointer; font-weight: 500; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .hero {
+    padding: 88px 52px 68px; max-width: 980px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 190px; gap: 48px; align-items: center;
+  }
+
+  .hero-tag { display: inline-flex; align-items: center; gap: 8px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 22px; }
+  .tag-line { width: 28px; height: 1px; background: var(--accent); }
+  .dot-pulse { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+  h1 { font-family: 'Playfair Display', serif; font-size: 54px; line-height: 1.1; color: var(--text); margin-bottom: 10px; letter-spacing: -1px; }
+  h1 .italic { font-style: italic; color: var(--accent2); }
+
+  .hero-role { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); margin-bottom: 24px; letter-spacing: 1px; }
+  .hero-role span { color: var(--accent); font-weight: 500; }
+
+  .hero-desc { font-size: 16px; color: var(--muted); max-width: 460px; margin-bottom: 36px; line-height: 1.8; font-weight: 300; }
+
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .btn-blue { background: var(--accent); color: white; padding: 13px 28px; border-radius: 8px; font-size: 13px; font-weight: 600; border: none; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s, transform 0.1s; }
+  .btn-blue:hover { background: var(--accent2); transform: translateY(-1px); }
+
+  .btn-outline { background: transparent; color: var(--text); padding: 13px 28px; border-radius: 8px; font-size: 13px; font-weight: 500; border: 1.5px solid var(--border); cursor: pointer; font-family: 'Inter', sans-serif; transition: border-color 0.2s, color 0.2s; }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .avatar { width: 178px; height: 178px; border-radius: 50%; border: 3px solid var(--accent); background: var(--card); display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; box-shadow: 0 8px 32px rgba(26,122,191,0.15); }
+  .avatar-ring { position: absolute; inset: -10px; border-radius: 50%; border: 1.5px dashed rgba(26,122,191,0.3); animation: rotate 10s linear infinite; }
+  @keyframes rotate { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  .avatar-initials { font-family: 'Playfair Display', serif; font-size: 50px; font-weight: 700; color: var(--accent); font-style: italic; }
+
+  .divider { height: 1px; background: var(--border); margin: 0 52px; }
+
+  .stats { display: flex; gap: 52px; padding: 34px 52px; max-width: 980px; margin: 0 auto; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--accent); font-weight: 700; line-height: 1; }
+  .stat-label { font-size: 12px; color: var(--muted); margin-top: 5px; }
+
+  section { padding: 64px 52px; max-width: 980px; margin: 0 auto; }
+
+  .section-tag { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+  .section-tag::after { content: ''; flex: 0 0 40px; height: 1px; background: var(--accent); opacity: 0.5; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 38px; color: var(--text); font-weight: 700; margin-bottom: 40px; }
+
+  /* SERVICES */
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .service-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 14px; padding: 28px 24px; transition: border-color 0.3s, transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden; }
+  .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent2); opacity: 0; transition: opacity 0.3s; }
+  .service-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(26,122,191,0.1); }
+  .service-card:hover::before { opacity: 1; }
+  .service-icon { font-size: 32px; margin-bottom: 16px; }
+  .service-name { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+  .service-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+  .service-items { margin-top: 16px; display: flex; flex-direction: column; gap: 6px; }
+  .service-item { font-size: 11px; color: var(--accent); font-family: 'DM Mono', monospace; display: flex; align-items: center; gap: 6px; }
+  .service-item::before { content: '→'; opacity: 0.6; }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .project-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s; }
+  .project-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 36px rgba(26,122,191,0.12); }
+  .project-banner { height: 130px; display: flex; align-items: center; justify-content: center; }
+  .project-body { padding: 22px; }
+  .project-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .ptag { font-size: 10px; font-family: 'DM Mono', monospace; color: var(--accent); background: var(--accent-light); border: 1px solid var(--border); padding: 3px 8px; border-radius: 4px; }
+  .project-name { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 7px; }
+  .project-desc { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+  .project-link { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--accent); font-family: 'DM Mono', monospace; border: 1px solid var(--border); padding: 7px 14px; border-radius: 6px; transition: background 0.2s, border-color 0.2s; text-decoration: none; background: var(--card2); }
+  .project-link:hover { background: var(--accent-light); border-color: var(--accent); }
+
+  /* EDUCATION */
+  .edu-grid { display: flex; flex-direction: column; gap: 16px; }
+  .edu-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 14px; padding: 22px 26px; display: grid; grid-template-columns: 52px 1fr auto; gap: 18px; align-items: center; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+  .edu-card:hover { border-color: var(--accent); transform: translateX(5px); box-shadow: 0 4px 16px rgba(26,122,191,0.08); }
+  .edu-icon { width: 52px; height: 52px; border-radius: 12px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; font-size: 24px; border: 1px solid var(--border); flex-shrink: 0; }
+  .edu-degree { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .edu-institute { font-size: 13px; color: var(--accent); font-weight: 500; }
+  .edu-year { font-family: 'DM Mono', monospace; font-size: 12px; color: white; background: var(--accent); padding: 5px 14px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }
+
+  /* CONTACT */
+  .contact-box { background: var(--accent); border-radius: 20px; padding: 56px 52px; text-align: center; max-width: 876px; margin: 0 auto 64px; position: relative; overflow: hidden; }
+  .contact-box::before { content: 'RN'; position: absolute; font-family: 'Playfair Display', serif; font-size: 220px; font-weight: 700; color: rgba(255,255,255,0.05); top: -50px; left: 50%; transform: translateX(-50%); font-style: italic; pointer-events: none; user-select: none; }
+  .contact-box h2 { font-family: 'Playfair Display', serif; font-size: 40px; color: white; margin-bottom: 14px; position: relative; }
+  .contact-box p { color: rgba(255,255,255,0.75); font-size: 15px; margin-bottom: 20px; max-width: 420px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+  .contact-email { font-family: 'DM Mono', monospace; font-size: 15px; color: white; margin-bottom: 30px; opacity: 0.9; }
+  .contact-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .contact-btn { background: rgba(255,255,255,0.15); color: white; padding: 12px 22px; border-radius: 8px; font-size: 13px; font-weight: 500; border: 1px solid rgba(255,255,255,0.3); cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; text-decoration: none; display: inline-block; }
+  .contact-btn:hover { background: white; color: var(--accent); border-color: white; }
+  .contact-btn.primary { background: white; color: var(--accent); font-weight: 600; border-color: white; }
+  .contact-btn.primary:hover { background: var(--bg2); }
+
+  footer { text-align: center; padding: 24px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); font-family: 'DM Mono', monospace; letter-spacing: 1px; }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { gap: 16px; }
+    .hero { grid-template-columns: 1fr; padding: 52px 20px 36px; gap: 24px; }
+    .avatar { margin: 0 auto; }
+    h1 { font-size: 38px; }
+    .stats { gap: 20px; padding: 20px; flex-wrap: wrap; }
+    section { padding: 44px 20px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .edu-card { grid-template-columns: 44px 1fr; }
+    .edu-year { display: none; }
+    .contact-box { padding: 36px 20px; margin: 0 20px 44px; }
+    .divider { margin: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <div class="logo-name">Rismi Niras</div>
+    <div class="logo-sub">Designer & Developer</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="hero-tag"><div class="tag-line"></div><div class="dot-pulse"></div> Available for Projects</div>
+    <h1>RISMI<br><span>NIRAS</span></h1>
+    <div class="hero-role"><span>Web Design</span> · <span>Web Development</span> · <span>Logo Design</span></div>
+    <p class="hero-desc">I craft beautiful digital experiences — from stunning websites to memorable brand identities. Based in Sri Lanka, working worldwide.</p>
+    <div class="hero-actions">
+      <button class="btn-blue" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View My Work →</button>
+      <button class="btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire Me</button>
+    </div>
+  </div>
+  <div class="avatar">
+    <div class="avatar-ring"></div>
+    <div class="avatar-initials">RN</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="stats">
+  <div><div class="stat-num">12+</div><div class="stat-label">Projects Completed</div></div>
+  <div><div class="stat-num">8+</div><div class="stat-label">Happy Clients</div></div>
+  <div><div class="stat-num">2+</div><div class="stat-label">Years Experience</div></div>
+  <div><div class="stat-num">3</div><div class="stat-label">Core Services</div></div>
+</div>
+
+<div class="divider"></div>
+
+<section id="services">
+  <div class="section-tag">What I Do</div>
+  <div class="section-title">Services</div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🎨</div>
+      <div class="service-name">Web Design</div>
+      <div class="service-desc">Beautiful, modern UI/UX designs that captivate users and elevate your brand online.</div>
+      <div class="service-items">
+        <div class="service-item">UI/UX Design</div>
+        <div class="service-item">Responsive Layouts</div>
+        <div class="service-item">Landing Pages</div>
+        <div class="service-item">Wireframing</div>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💻</div>
+      <div class="service-name">Web Development</div>
+      <div class="service-desc">Clean, fast websites and web apps built with modern technologies that perform.</div>
+      <div class="service-items">
+        <div class="service-item">HTML / CSS / JS</div>
+        <div class="service-item">React / Next.js</div>
+        <div class="service-item">E-Commerce Sites</div>
+        <div class="service-item">CMS Integration</div>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✦</div>
+      <div class="service-name">Logo Design</div>
+      <div class="service-desc">Unique, timeless logos and brand identities that make your business unforgettable.</div>
+      <div class="service-items">
+        <div class="service-item">Logo Creation</div>
+        <div class="service-item">Brand Identity</div>
+        <div class="service-item">Color Palettes</div>
+        <div class="service-item">Brand Guidelines</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="projects">
+  <div class="section-tag">Portfolio</div>
+  <div class="section-title">Featured Work</div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-banner" style="background: linear-gradient(135deg, #1565c0, #42a5f5);">
+        <div style="text-align:center;">
+          <div style="font-size:12px;font-family:'DM Mono',monospace;color:rgba(255,255,255,0.6);letter-spacing:2px;margin-bottom:4px;">buddystore.ink</div>
+          <div style="font-size:24px;font-weight:700;color:white;">BuddyStore</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.6);margin-top:2px;">Electronics & Gadgets · Sri Lanka</div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags"><span class="ptag">Web Design</span><span class="ptag">Development</span><span class="ptag">E-Commerce</span></div>
+        <div class="project-name">BuddyStore.ink</div>
+        <div class="project-desc">Full e-commerce platform for electronics & gadgets in Sri Lanka. Features flash deals, WhatsApp ordering, and island-wide delivery.</div>
+        <a class="project-link" href="https://buddystore.ink" target="_blank">↗ Visit Live Site</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-banner" style="background: linear-gradient(135deg, #0d2b6b, #1a4ba8);">
+        <div style="text-align:center;">
+          <div style="font-size:26px;font-weight:700;color:white;"><span>Blue</span><span style="color:#f5a623;">Spike</span></div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.6);margin-top:6px;">Hotel Booking Platform</div>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags"><span class="ptag">Web Design</span><span class="ptag">Development</span><span class="ptag">Travel</span></div>
+        <div class="project-name">BlueSpike</div>
+        <div class="project-desc">Hotel booking platform with destination search, date picker, guest selection, and popular destinations showcase. Clean travel UI.</div>
+        <a class="project-link" href="#">↗ View Project</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="education">
+  <div class="section-tag">Qualifications</div>
+  <div class="section-title">Education</div>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-icon">🎓</div>
+      <div>
+        <div class="edu-degree">Diploma in Information Technology</div>
+        <div class="edu-institute">ESOFT Metro Campus</div>
+      </div>
+      <div class="edu-year">2023</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon">🌐</div>
+      <div>
+        <div class="edu-degree">Diploma in English</div>
+        <div class="edu-institute">ESOFT Metro Campus</div>
+      </div>
+      <div class="edu-year">2023</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon">💡</div>
+      <div>
+        <div class="edu-degree">Foundation in Computer Science</div>
+        <div class="edu-institute">NIBM — National Institute of Business Management</div>
+      </div>
+      <div class="edu-year">2024</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="margin-bottom:64px;"></div>
+
+<div class="contact-box" id="contact">
+  <h2>Let's Work Together</h2>
+  <p>Have a project in mind? I'd love to hear about it. Let's build something beautiful.</p>
+  <div class="contact-email">rismi9399@gmail.com</div>
+  <div class="contact-links">
+    <a class="contact-btn primary" href="mailto:rismi9399@gmail.com">✉ Email Me</a>
+    <a class="contact-btn" href="https://www.instagram.com/asrto_mx?igsh=MXVlZGJmZXVqcjhlcA%3D%3D&utm_source=qr" target="_blank">📸 Instagram</a>
+    <button class="contact-btn" onclick="navigator.clipboard.writeText('rismi9399@gmail.com').then(()=>alert('Email copied! ✓'))">📋 Copy Email</button>
+  </div>
+</div>
+
+<footer>© 2026 Rismi Niras · Crafted with passion · Sri Lanka 🇱🇰</footer>
+
+</body>
+</html>
